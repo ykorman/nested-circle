@@ -5,8 +5,8 @@ jobs:
                 machine:
                         image: ubuntu-2004:202101-01
                 steps:
-                        - run: apt update
-                        - run: apt install --install-recommends linux-generic-hwe-20.04
-                        - run: apt dist-upgrade -y
+                        - run: sudo apt update
+                        - run: sudo apt install --install-recommends linux-generic-hwe-20.04
+                        - run: sudo apt dist-upgrade -y
                         - run: ls /boot
                         - run: cat /proc/cmdline
