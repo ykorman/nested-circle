@@ -6,7 +6,11 @@ jobs:
                         image: ubuntu-2004:202101-01
                 steps:
                         - run: sudo apt update
-                        - run: sudo apt install --install-recommends linux-generic-hwe-20.04
-                        - run: sudo apt dist-upgrade -y
+                        - run: sudo apt install -y --install-recommends linux-generic-hwe-20.04 kexec-tools
                         - run: ls /boot
+                        - run: sudo kexec -l /boot/vmlinuz-5.8.0-49-generic --initrd=/boot/initrd.img-5.8.0-49-generic --append="root=PARTUUID=2707a646-6a60-476b-805c-ac3388be9375 ro console=ttyS0 panic=-1"
+                        - run:
+                                name: reboot
+                                command: sudo kexec -e
+                                background: true
                         - run: cat /proc/cmdline
